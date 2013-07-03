@@ -5,16 +5,21 @@ import libraries.IIC_device
 import drivers.Arduino.Arduino_driver_10
 import * from Modules.Core.Handlers 
 
+# om andere modules als aparte programma's te openen gebruik: import os os.startfile(path)
+	loaded_modules = []
 def Sytem_setup():
 	led_on()
 	Sonar.setup()
 	MotorDriver = IIC_device(4, Arduino_driver_10())
-	nav = Navigation_handler("evade", *MotorDriver)
+	loaded_modules.append(Navigation_handler("evade",True, MotorDriver))
 	
 def System_run():
 	try:
 		distance = Sonar.read()
 		nav.Run_time(distance)
+		for m in loaded_modules:
+			if m.running == True:
+				m.Run()
 	except: 
 		print "Unexpected error:", sys.exc_info()[0]
 		MotorDriver.setInternalCommand("Stop",0)

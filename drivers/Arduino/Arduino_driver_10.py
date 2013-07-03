@@ -3,32 +3,30 @@
 # pan and tilt servo's for the head.
 
 class Arduino_driver_10:
-	def __init__(self):
-		self._out = {
-				'left_dir': ['l', False], 
-				'right_dir': ['r', False],
-				'h_turn': ['b', 45],
-				'h_tilt': ['n', 45]}
+	def __init__(self):	
+		self._out{"dir_left": ['l',False], "dir_right": ['r','false'], "h_turn": ['b', 45], "h_tilt": ['n', 45]}
+
+ 
 ## Start section Internal driver command handling			
 	def Stop():
-	self._out["right_speed"][1] = 0
-	self._out["left_speed"][1] = 0
+	self._out["dir_left"][1] = 0
+	self._out["dir_right"][1] = 0
 		
 	def Foreward():
-        self._out["left_dir"][1] = True
-        self._out["right_dir"][1] = True
+        self._out["dir_left"][1] = True
+        self._out["dir_right"][1] = True
 		
 	def TurnLeft():
-        self._out["left_dir"][1] = False
-        self._out["right_dir"][1] = True
+        self._out["dir_left"][1] = False
+        self._out["dir_right"][1] = True
 	
 	def TurnRight():
-        self._out["left_dir"][1] = True
-        self._out["right_dir"][1] = False 
+        self._out["dir_left"][1] = True
+        self._out["dir_right"][1] = False 
 		
 	def Backward():
-        self._out["left_dir"][1] = False
-        self._out["right_dir"][1] = False 
+        self._out["dir_left"][1] = False
+        self._out["dir_right"][1] = False 
 	
 	def Head_tilt(angle):
 		self._out["h_tilt"][1] = angle

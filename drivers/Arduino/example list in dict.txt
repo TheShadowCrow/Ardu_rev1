@@ -1,0 +1,3 @@
+	out = {"dir_left": ['l',False], "dir_right": ['r','false'], "h_turn": ['b', 45], "h_tilt": ['n', 45]} 
+	[ l[1] for l in out["dir_left"]]
+	

@@ -6,7 +6,7 @@ class IIC_Device:
 	
 	def sendData():
 		data_out = []
-		for item in data_out:
+		for item in self.driver._out:
 			data_out.append(self.driver._out[item][0])
 			data_out.append(self.driver._out[item][1])
         
