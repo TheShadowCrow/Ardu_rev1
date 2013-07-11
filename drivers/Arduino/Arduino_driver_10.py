@@ -1,41 +1,69 @@
 # This is the version 1.0  of the arduino driver.
 # it supports of driving the directions of the two motors and turning the 
 # pan and tilt servo's for the head.
+import Ardu_rev1.Libraries.IIC_Command
 
 class Arduino_driver_10:
 	def __init__(self):	
-		self._out{"dir_left": ['l',False], "dir_right": ['r','false'], "h_turn": ['b', 45], "h_tilt": ['n', 45]}
-
- 
+		self.out = [] #{"dir_left": ['l',False], "dir_right": ['r','false'], "h_turn": ['b', 45], "h_tilt": ['n', 45]}
+		self.out.append(IIC_Command("dir_left", 'l',False)
+		self.out.append(IIC_Command("dir_right", 'r',False)
+		self.out.append(IIC_Command("h_turn", 'b',45)
+		self.out.append(IIC_Command("h_tilt", 'n',45)
+		self.out.append(IIC_Command("stop_wheel", 's', True)
+		self.state = ["Stopped", 45, 45] #motorstate h_turn, h_titl 
 ## Start section Internal driver command handling			
-	def Stop():
-	self._out["dir_left"][1] = 0
-	self._out["dir_right"][1] = 0
+	def Stop(self):
+		self.out[0].send = False
+		self.out[1].send = False 
+		self.out[4].send = True
+		self.state[0] = "Stopped"
 		
-	def Foreward():
-        self._out["dir_left"][1] = True
-        self._out["dir_right"][1] = True
+	def Foreward(self):
+        self.out[0].data = True
+        self.out[1].data = True
+		self.out[0].send = True
+		self.out[1].send = True
+		self.out[4].send = False
+		self.state[0] = "Foreward"
 		
-	def TurnLeft():
-        self._out["dir_left"][1] = False
-        self._out["dir_right"][1] = True
+	def TurnLeft(self):
+		self.out[0].data = False
+        self.out[1].data = True
+		self.out[0].send = True
+		self.out[1].send = True
+		self.out[4].send = False
+		self.state[0] = "Turning left"
 	
-	def TurnRight():
-        self._out["dir_left"][1] = True
-        self._out["dir_right"][1] = False 
+	def TurnRight(self):
+		self.out[0].data = True
+        self.out[1].data = False
+		self.out[0].send = True
+		self.out[1].send = True
+		self.out[4].send = False
+		self.state[0] = "Turning right"
 		
-	def Backward():
-        self._out["dir_left"][1] = False
-        self._out["dir_right"][1] = False 
-	
-	def Head_tilt(angle):
-		self._out["h_tilt"][1] = angle
-	
-	def Head_turn(angle):
-		self._out["h_turn"][1] = angle
+	def Backward(self):
+	    self.out[0].data = False
+        self.out[1].data = False
+		self.out[0].send = True
+		self.out[1].send = True
+		self.out[4].send = False
+		self.state[0] = "Backward"
+		
+	def Head_tilt(self, angle):
+        self.out[2].data = angle
+		self.out[2].send = True
+		self.state[1] = "angle"
+		
+	def Head_turn(self, angle):
+        self.out[3].data = angle
+		self.out[3].send = True
+		self.state[2] = "angle"
+
 ## End section internam command handling.
 
-	def setCommand(command, data):
+	def setCommand(self, command, data):
 		if command == "Stop":
 			self.Stop()
 		elif command == "Foreward":

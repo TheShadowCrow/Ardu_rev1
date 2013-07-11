@@ -3,9 +3,11 @@ class IIC_Command:
 		self.name = name
 		self.command = command
 		self.data = data
+		self.send = False
 	
-	def setValue(value):
+	def setValue(self, value):
 		self.data = value
+		self.send = True
 		
-	def setCommand(command):
+	def setCommand(self, command):
 		self.command = command

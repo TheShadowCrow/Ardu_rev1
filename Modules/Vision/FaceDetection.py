@@ -17,18 +17,20 @@ class FaceDectect:
 		return faces
 		
 	def detect_faces(self):
+		self.get_Image()
 		faces = [] 
-		detected = cv.HaarDetectObjects(self.getImage(), self.cascade, self.storage, 1.2, 2,  cv.CV_HAAR_DO_CANNY_PRUNING, (100,100))
+		detected = cv.HaarDetectObjects(self.image, self.cascade, self.storage, 1.2, 2,  cv.CV_HAAR_DO_CANNY_PRUNING, (100,100))
 		if detected:
 			for (x,y,w,h),n in detected:
 				faces.append((x,y,w,h))
 		return faces
 		
 	def get_Image(self):
-		return image = cv.QueryFrame(self.capture)
+		self.image = cv.QueryFrame(self.capture)
+		return self.image
 	
 if __name__ == "__main__":
-	cv.NamedWindow("Video", cv.CV_WINDOW_AUTOSIZE)
+	cv.NamedWindow("Video", 1)
 	fd = FaceDetect("face.xml", 0)
 	faces = []	
 	i = 0
@@ -37,7 +39,7 @@ if __name__ == "__main__":
 			faces= detect_faces()
 		
 		for (x,y,w,h) in faces:
-            cv.Rectangle(image, (x,y), (x+w,y+h), 255)
+            cv.Rectangle(fd.image, (x,y), (x+w,y+h), 255)
  
-        cv.ShowImage("w1", image)
+        cv.ShowImage("w1", fd.image)
         i += 1	
