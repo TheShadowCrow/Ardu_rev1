@@ -6,49 +6,38 @@ from Libraries.IIC_Command import IIC_Command
 class Arduino_driver_10:
 	def __init__(self):	
 		self.out = [] #{"dir_left": ['l',False], "dir_right": ['r','false'], "h_turn": ['b', 45], "h_tilt": ['n', 45]}
-		self.out.append(IIC_Command("dir_left", 'l',False))
-		self.out.append(IIC_Command("dir_right", 'r',False))
+		self.out.append(IIC_Command("turn_left", 'l',False))
+		self.out.append(IIC_Command("turn_right", 'r',False))
+		self.out.append(IIC_Command("foreward", 'r',False) 
+		self.out.append(IIC_Command("backward", 'r',False))
 		self.out.append(IIC_Command("h_turn", 'b',45))
 		self.out.append(IIC_Command("h_tilt", 'n',45))
 		self.out.append(IIC_Command("stop_wheel", 's', True))
 		self.state = ["Stopped", 45, 45] #motorstate h_turn, h_titl 
 ## Start section Internal driver command handling			
 	def Stop(self):
-		self.out[0].send = False
-		self.out[1].send = False 
-		self.out[4].send = True
+		#self.out[6].data = True
+		self.out[6].send = True
 		self.state[0] = "Stopped"
 		
 	def Foreward(self):
-		self.out[0].data = True
-		self.out[1].data = True
-		self.out[0].send = True
-		self.out[1].send = True
-		self.out[4].send = False
+		#self.out[2].data = True
+		self.out[2].send = True
 		self.state[0] = "Foreward"
 		
 	def TurnLeft(self):
-		self.out[0].data = False
-		self.out[1].data = True
+		#self.out[0].data = False
 		self.out[0].send = True
-		self.out[1].send = True
-		self.out[4].send = False
 		self.state[0] = "Turning left"
 	
 	def TurnRight(self):
-		self.out[0].data = True
-		self.out[1].data = False
-		self.out[0].send = True
+		#self.out[1].data = True
 		self.out[1].send = True
-		self.out[4].send = False
 		self.state[0] = "Turning right"
 		
 	def Backward(self):
-		self.out[0].data = False
-		self.out[1].data = False
-		self.out[0].send = True
-		self.out[1].send = True
-		self.out[4].send = False
+		#self.out[3].data = True
+		self.out[3].send = True
 		self.state[0] = "Backward"
 		
 	def Head_tilt(self, angle):

@@ -35,6 +35,8 @@ if __name__ == "__main__":
 			#bus.write_i2c_block_data(0x04, 0, c)
 			#bus.write_byte(0x04,ord('n'))
 			#bus.write_byte(0x04,value) 
+		elif command == "foreward":
+			arduino.setInternalCommand("Foreward", value)
 		else:
 			print "Sorry but that command has not been reconized"
 
