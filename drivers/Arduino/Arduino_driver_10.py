@@ -1,7 +1,7 @@
 # This is the version 1.0  of the arduino driver.
 # it supports of driving the directions of the two motors and turning the 
 # pan and tilt servo's for the head.
-import Ardu_rev1.Libraries.IIC_Command
+from Libraries.IIC_Command import IIC_Command
 
 class Arduino_driver_10:
 	def __init__(self):	

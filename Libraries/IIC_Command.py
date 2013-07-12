@@ -1,7 +1,7 @@
 class IIC_Command:
 	def __init__(self, name, command, data):
 		self.name = name
-		self.command = command
+		self.command = ord(command) #mogelijk ord(command)
 		self.data = data
 		self.send = False
 	

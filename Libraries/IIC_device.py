@@ -1,18 +1,20 @@
 class IIC_Device:
-	def __init__(self, bus, addres, device_driver):
+	def __init__(self, bus, address, device_driver):
 		self.bus = bus
 		self.address = address
 		self.driver = device_driver
 	
 	def sendData(self):
 		data_out = []
+		n = 0
 		for item in self.driver.out:
-			if(self.driver.out[item].send == True):
-				data_out.append(self.driver.out[item].command)
-				data_out.append(self.driver.out[item].data)
-				self.driver.out[item].send = False 
+			if(item.send == True):
+				data_out.append(item.command)
+				data_out.append(item.data)
+				self.driver.out[n].send = False
+			n = n + 1
         
-		bus.write_i2c_block_data(self.address, 0, data_out)
+		self.bus.write_block_data(self.address, 0, data_out)
 				
 
 	def setInternalCommand(self, command, data):
