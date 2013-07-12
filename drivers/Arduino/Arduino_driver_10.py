@@ -8,7 +8,7 @@ class Arduino_driver_10:
 		self.out = [] #{"dir_left": ['l',False], "dir_right": ['r','false'], "h_turn": ['b', 45], "h_tilt": ['n', 45]}
 		self.out.append(IIC_Command("turn_left", 'l',False))
 		self.out.append(IIC_Command("turn_right", 'r',False))
-		self.out.append(IIC_Command("foreward", 'f',False) 
+		self.out.append(IIC_Command("foreward", 'f',False)) 
 		self.out.append(IIC_Command("backward", 'b',False))
 		self.out.append(IIC_Command("h_turn", 'h',45))
 		self.out.append(IIC_Command("h_tilt", 'n',45))
