@@ -20,8 +20,8 @@ class Arduino_driver_10:
 		self.state[0] = "Stopped"
 		
 	def Foreward(self):
-        self.out[0].data = True
-        self.out[1].data = True
+		self.out[0].data = True
+		self.out[1].data = True
 		self.out[0].send = True
 		self.out[1].send = True
 		self.out[4].send = False
@@ -29,7 +29,7 @@ class Arduino_driver_10:
 		
 	def TurnLeft(self):
 		self.out[0].data = False
-        self.out[1].data = True
+		self.out[1].data = True
 		self.out[0].send = True
 		self.out[1].send = True
 		self.out[4].send = False
@@ -37,27 +37,27 @@ class Arduino_driver_10:
 	
 	def TurnRight(self):
 		self.out[0].data = True
-        self.out[1].data = False
+		self.out[1].data = False
 		self.out[0].send = True
 		self.out[1].send = True
 		self.out[4].send = False
 		self.state[0] = "Turning right"
 		
 	def Backward(self):
-	    self.out[0].data = False
-        self.out[1].data = False
+		self.out[0].data = False
+		self.out[1].data = False
 		self.out[0].send = True
 		self.out[1].send = True
 		self.out[4].send = False
 		self.state[0] = "Backward"
 		
 	def Head_tilt(self, angle):
-        self.out[2].data = angle
+		self.out[2].data = angle
 		self.out[2].send = True
 		self.state[1] = "angle"
 		
 	def Head_turn(self, angle):
-        self.out[3].data = angle
+		self.out[3].data = angle
 		self.out[3].send = True
 		self.state[2] = "angle"
 
