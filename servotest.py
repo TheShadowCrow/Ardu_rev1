@@ -27,7 +27,7 @@ if __name__ == "__main__":
 	
 		if command == "turn":
 			arduino.setInternalCommand("TurnHead", value)
-			#bus.write_byte(0x04,ord('b'))
+			#bus.write_byte(0x04,ord('h'))
 			#bus.write_byte(0x04,value)
 		elif command == "tilt":
 			arduino.setInternalCommand("TiltHead", value)
