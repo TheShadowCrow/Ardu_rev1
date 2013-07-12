@@ -6,11 +6,11 @@ import Ardu_rev1.Libraries.IIC_Command
 class Arduino_driver_10:
 	def __init__(self):	
 		self.out = [] #{"dir_left": ['l',False], "dir_right": ['r','false'], "h_turn": ['b', 45], "h_tilt": ['n', 45]}
-		self.out.append(IIC_Command("dir_left", 'l',False)
-		self.out.append(IIC_Command("dir_right", 'r',False)
-		self.out.append(IIC_Command("h_turn", 'b',45)
-		self.out.append(IIC_Command("h_tilt", 'n',45)
-		self.out.append(IIC_Command("stop_wheel", 's', True)
+		self.out.append(IIC_Command("dir_left", 'l',False))
+		self.out.append(IIC_Command("dir_right", 'r',False))
+		self.out.append(IIC_Command("h_turn", 'b',45))
+		self.out.append(IIC_Command("h_tilt", 'n',45))
+		self.out.append(IIC_Command("stop_wheel", 's', True))
 		self.state = ["Stopped", 45, 45] #motorstate h_turn, h_titl 
 ## Start section Internal driver command handling			
 	def Stop(self):
