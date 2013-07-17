@@ -1,0 +1,21 @@
+<Ardu>
+	<Core>
+		<setting name="debug" value="False" />
+		<zmq>
+			<socket type="publisher" name="arduino_status" port="5501" />
+		<zmq>
+	</Core>
+	<Modules>
+		<Module name="VoiceCommand" autorun="True">
+			<path value="/home/pi/Ardu/Ardu_rev1/Modules/Speech/VoiceCommand.py" />
+			<zmq>
+				<socket type="publisher" name="Command_Line" port="5505" />
+			</zmq>
+		</Module>
+		<Module name="FaceTracker" autorun="False">
+		
+		</Module>
+		<Module name="ObjectTracker" autorun="False">
+		</Module>
+	</Modules>
+</Ardu>
